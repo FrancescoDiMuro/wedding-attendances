@@ -39,7 +39,8 @@ server.on('request', async (req, res) => {
     // Log from where the request arrived
     console.log(`${requestMethod} request received from ${route}`);
 
-    // Routes
+    /* ---------- Routes ---------- */
+    // GET /ping
     if(route === '/ping' && requestMethod === 'GET') {
         let response = JSON.stringify(
             {message: 'pong'}
@@ -47,16 +48,19 @@ server.on('request', async (req, res) => {
         res.writeHead(HTTP.OK, 'OK', responseHeaders);
         res.end(response);
     }
+    // GET /attendances
     else if (route === '/attendances' && requestMethod === 'GET') {
         let response = await retrieveAttendances(attendancesFileName);
         res.writeHead(HTTP.OK, 'OK', responseHeaders);
         res.end(response);
     }
+    // POST /attendances
     else if (route === '/attendances' && requestMethod === 'POST') {
         let response = await createAttendance(req, attendancesFileName);
         res.writeHead(HTTP.CREATED, 'OK', responseHeaders);
         res.end(response);
     }
+    // Undefined route
     else {
         let response = JSON.stringify(
             {message: `Route ${route} not found.`}
