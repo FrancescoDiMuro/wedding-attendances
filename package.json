@@ -1,0 +1,15 @@
+{
+  "name": "wedding-attendance",
+  "version": "1.0.0",
+  "description": "Wedding attendance application developed in Vanilla JS and NodeJS",
+  "license": "ISC",
+  "author": "Francesco Di Muro",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
