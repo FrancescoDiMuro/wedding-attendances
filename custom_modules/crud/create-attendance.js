@@ -9,9 +9,12 @@ export default async function createAttendance(request, fileName) {
         // Get the actual list of attendances
         let attendances = await readFile(fileName, {encoding: 'utf-8', flag: 'a+'});
 
+        // If there is at least a record, 
+        // then parse the content of the file as a JSON object
         if(attendances.length > 0) {
             attendances = JSON.parse(attendances);
         }
+        // Else, create an empty array
         else {
             attendances = [];
         }
@@ -25,6 +28,7 @@ export default async function createAttendance(request, fileName) {
         // Assign the attendance id to the attendance data
         attendanceData.id = attendanceId;
 
+        // Push the newly created record in the attendences array/JSON object
         attendances.push(attendanceData);
         
         // Stringify the data, with no replacer and four spaces
@@ -33,8 +37,6 @@ export default async function createAttendance(request, fileName) {
             null,
             4
         );
-
-        console.log(attendances);
 
         // Write to the file
         await writeFile(
