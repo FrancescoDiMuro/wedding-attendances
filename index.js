@@ -12,7 +12,7 @@ import retrieveTotals from './custom_modules/crud/retrieve-totals.js';
 const protocol = 'http';
 const hostname = '127.0.0.1';
 const port = 8000;
-const baseUrl = `${protocol}://${hostname}:${port}`
+const baseUrl = `${protocol}://${hostname}:${port}`;
 const responseHeaders = {
     'Content-Type': 'application/json'
 };
