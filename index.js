@@ -6,6 +6,7 @@ import { URL } from 'node:url';
 import HTTP from './custom_modules/http-status-code.js';
 import retrieveAttendances from './custom_modules/crud/retrieve-attendances.js';
 import createAttendance from './custom_modules/crud/create-attendance.js';
+import retrieveTotals from './custom_modules/crud/retrieve-totals.js';
 
 // App constants
 const protocol = 'http';
@@ -58,6 +59,12 @@ server.on('request', async (req, res) => {
     else if (route === '/attendances' && requestMethod === 'POST') {
         let response = await createAttendance(req, attendancesFileName);
         res.writeHead(HTTP.CREATED, 'OK', responseHeaders);
+        res.end(response);
+    }
+    // GET /totals
+    else if (route === '/totals' && requestMethod === 'GET') {
+        let response = await retrieveTotals(attendancesFileName);
+        res.writeHead(HTTP.OK, 'OK', responseHeaders);
         res.end(response);
     }
     // Undefined route
